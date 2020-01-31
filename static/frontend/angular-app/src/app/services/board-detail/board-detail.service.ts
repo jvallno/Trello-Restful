@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
 export class BoardDetailService {
 
   baseurl = 'http://127.0.0.1:8000/api/board/';
-  emailUrl = 'http://127.0.0.1:8000/api/invite';
+  emailUrl = 'http://127.0.0.1:8000/api/invite/';
   windowUrl = window.location.href;
   httpHeaders = new HttpHeaders({'Content-Type': 'application/json'})
   csrfheaders = new HttpHeaders({'X-CSRFToken': this.cookieService.get('csrftoken')});
@@ -92,8 +92,9 @@ export class BoardDetailService {
   }
 
   sendInvitationEmail(boardID, emailData): Observable<any>{
-    const data = {member_email: emailData.member_emails};
-    return this.http.post(this.emailUrl, data,
-    this.link);
+    const data = {member_email: emailData.member_email};
+    let isRoute = this.http.post(this.emailUrl, data, this.csrf);
+    console.log(isRoute, 'this route')
+    return isRoute
   }
 }

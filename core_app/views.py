@@ -230,9 +230,9 @@ class BoardInviteViewSet(viewsets.ViewSet):
     Enable the owner to invite member to existing board
     """
 
-    authentication_classes = (CsrfExemptSessionAuthentication, BasicAuthentication)
     subject = 'Trello Confirmation'
 
+    authentication_classes = (CsrfExemptSessionAuthentication, BasicAuthentication)
     def invite(self, *args, **kwargs):
         # board_id = kwargs.get('board_id')
         # board = Board.objects.get(id=2)

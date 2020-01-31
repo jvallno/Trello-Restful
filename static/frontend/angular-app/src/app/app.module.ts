@@ -18,6 +18,7 @@ import { AuthInterceptor } from './auth/auth.interceptor';
 import { BoardDetailsComponent } from './components/board-details/board-details.component';
 import { CookieService } from 'ngx-cookie-service';
 import { NotFoundComponent } from './components/not-found/not-found.component';
+import { ConfirmationComponent } from './components/confirmation/confirmation.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
     HomeComponent,
     BoardDetailsComponent,
     NotFoundComponent,
+    ConfirmationComponent,
   ],
   imports: [
     BrowserModule,
