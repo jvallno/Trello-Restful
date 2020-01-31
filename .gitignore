@@ -21,7 +21,6 @@ Thumbs.db
 /.vscode
 __pycache__
 venv/
-migrations/
 trello/__pycache__/
 __pycache__/settings.cpython-38.pyc
 cache/
