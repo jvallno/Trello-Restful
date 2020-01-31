@@ -231,7 +231,6 @@ class BoardInviteViewSet(viewsets.ViewSet):
     """
 
     authentication_classes = (CsrfExemptSessionAuthentication, BasicAuthentication)
-    permission_classes = [permissions.IsAuthenticated]
     subject = 'Trello Confirmation'
 
     def invite(self, *args, **kwargs):
@@ -284,6 +283,7 @@ class InvitedSignUpView(viewsets.ViewSet):
     Allow the user to login
     """
 
+    authentication_classes = (CsrfExemptSessionAuthentication, BasicAuthentication)
     serializer_class = SignUpSerializer
     template_name = 'board_single_view'
 

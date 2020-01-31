@@ -219,6 +219,7 @@ export class BoardDetailsComponent implements OnInit {
   }
 
   sendEmail = () => {
+    console.log(this.inputEmail, 'email')
     this.api.sendInvitationEmail(this.paramData.id, this.inputEmail).subscribe(
       data => {
         this.lists.push(data);

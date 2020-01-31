@@ -92,8 +92,8 @@ export class BoardDetailService {
   }
 
   sendInvitationEmail(boardID, emailData): Observable<any>{
-    const data = {board:boardID.id, member_email: emailData.member_email};
+    const data = {member_email: emailData.member_emails};
     return this.http.post(this.emailUrl, data,
-    this.csrf);
+    this.link);
   }
 }
