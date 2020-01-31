@@ -85,38 +85,3 @@ class BoardInvite(models.Model):
     member_email = models.EmailField(max_length=50, blank=True)
     archive = models.BooleanField(default=False)
     token = models.UUIDField(default=uuid.uuid4)
-
-# localhost/invite/<token>
-
-# get_invite object using token if activation is False
-
-
-# class BoardInviteActiovation(BoardMixin, viewset)
-
-#     def confirm_view(self, *args, **kwargs):
-#         if self.request.user.is_authenticated():
-#             invite = get_object_or_404(BoardInvite, token=<token>, activation=False)
-#             invite.activation = True
-#             invite.save()
-#             self.add_member(self.request.user, invite.board) 
-#         redirect(signup?token_id=<token>/)
-    
-# core/mixins.py
-# class BoardMixin(object):
-
-#     def add_member(self, email, board):
-#         member = BoardMember.objects.get_or(user=user, board=board)
-#         return member
-
-
-# class SignupViewSet(BoardMixin)
-
-#     def activate(self, args, )
-#         username = self.request.data.get(usernaem)
-#         passord - 
-#         invite = InviteMember.objects.get(token=token)
-#         invite.activation =True
-#         invite.save()
-#         new_member = user.objects.create_user(usernam=username, password=password)
-#         self.add_member(member, invite.board)
-#         return Response(status=200)
