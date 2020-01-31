@@ -1,0 +1,233 @@
+<section>
+<div class="list-group">
+  <ul class="list-inline">
+    <li class="list-inline-item"><a href="#"><h2>Home</h2></a></li>
+    <!-- <li class="list-inline-item"><h5>{{board.title}}</h5></li> -->
+    <li class="list-inline-item">
+      <form (ngSubmit)="sendEmail()" #f="ngForm">
+        <div class="form-group">
+            <input 
+                [(ngModel)]="inputEmail.title" 
+                placeholder="Email" 
+                class="signup-field"
+                #title="ngModel"
+                name="title"
+                required
+            >
+            <div 
+                class="invalid-text"
+                *ngIf="errors.error">
+                {{errors.error.title}}
+            </div>
+        </div>
+      </form>
+    </li>
+    <li class="list-inline-item">
+      <div class="dropdown">
+        <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Members
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <a class="dropdown-item" href="#">board.user - (Admin)</a>
+          <a class="dropdown-item" href="#">member.authorized_email</a>
+        </div>
+      </div>
+    </li>
+    <li class="list-inline-item">
+      <form method="POST" class="" id="leaveBoard" action="#" novalidate>
+        <input type="submit" value="Leave Board" class="save btn btn-light">
+      </form>
+    </li>
+  </ul>
+<div class="row">
+  <ul class="col-md-2 list-sort sortable-list" *ngFor="let list of lists">
+
+      <li class="list-frame drag-list" id="list.id" data-id="list.id}">
+        <div class="btn-group btn-list-title">
+            <!-- Display List -->
+            <div class="list-title">
+              <button class="text-break btn btn-light content-btn-title-list">{{list.title}}</button>
+            </div>
+            <button type="button" 
+              class="btn btn-light fa fa-ellipsis-h content-btn-dropdown" 
+              data-toggle="dropdown" 
+              aria-haspopup="true" 
+              aria-expanded="false"
+              (click)="listClick(list)"
+            >
+                <span class="sr-only">Toggle Dropdown</span>
+            </button>
+            <div class="dropdown-menu">
+              <button class="btn btn-light dropdown-item" (click)="deleteList()">Delete</button>
+              <button 
+                class="btn btn-light dropdown-item" 
+                (click)="archiveList(list)">Archive</button>
+              <a class="dropdown-item" href="#"
+                data-toggle="modal" 
+                data-target="#exampleModal"
+                (click)="this.showHideBtn = true">
+                Update
+              </a>
+            </div>
+        </div>
+        <!-- Display cards using ajax -->
+        <ul class="sortable-card" id="list.id" *ngFor="let card of list.cards">
+          <li class="card-spacer" >&nbsp;</li>
+              <li id=" card.id " *ngIf="!card.archive">
+                  <div class="btn-group btn-card-title">
+                      <!-- Display List -->
+                      <div class="card-title">
+                          <a href="#" 
+                            (click)="cardClick(card, list)" 
+                            class="text-break btn btn-light content-btn-card-list drag-card" 
+                            data-id=" card.id " 
+                            id="card card.id " 
+                            data-toggle="modal" 
+                            data-target="#viewCardModal" 
+                            data-remote="#">
+                            {{card.archive}}
+                          </a>
+                      </div>
+                      <button (click)="cardClick(card, list)" type="button" class="btn btn-light fa fa-ellipsis-h btn-card-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      </button>
+                      <div class="dropdown-menu">
+                          <button 
+                            class="btn btn-light dropdown-item" 
+                            (click)="deleteCard()">Delete</button>
+                          <button 
+                            class="btn btn-light dropdown-item"
+                            (click)="archiveCard(card, list)">Archive</button>
+                          <button 
+                            class="btn btn-light dropdown-item"
+                            data-toggle="modal" 
+                            data-target="#cardModal"
+                            (click)="this.showHideBtn = true">Edit</button>
+                      </div>
+                  </div>
+              </li>
+          </ul>
+        <button 
+          (click)="cardClicked(list)"
+          data-toggle="modal" 
+          data-target="#cardModal" 
+          class="btn btn-light add-button top-menu text-left"
+          (click)="this.showHideBtn = false"
+          >
+            <i class="fa fa-plus" 
+              aria-hidden="true" ></i> Add a card
+        </button>
+      </li>
+      
+    </ul>
+    <div class="col-md-2 add-btn-frame add-a-list" id="add-a-list">
+      <button 
+        class="btn btn-light add-list-button add-a-listt op-menu"
+        data-toggle="modal" 
+        data-target="#exampleModal" 
+        (click)="this.showHideBtn = false">
+      <i class="fa fa-plus" aria-hidden="true"></i> Add a list
+    </button>
+    </div>
+  </div>
+  </div>
+
+<!-- Modals -->
+<div class="modal fade btn" id="viewCardModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel"></h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          ...
+        </div>
+      </div>
+    </div>
+</div>
+<!-- Modal -->
+
+<!-- list modal -->
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel" *ngIf="this.showHideBtn">Update List</h5>
+        <h5 class="modal-title" id="exampleModalLabel" *ngIf="!this.showHideBtn">Add List</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form (ngSubmit)="createList()" #f="ngForm">
+          <div class="form-group">
+              <input 
+                  [(ngModel)]="selectList.title" 
+                  placeholder="Title" 
+                  class="signup-field"
+                  #title="ngModel"
+                  name="title"
+                  [ngClass]="{'alert alert-danger': errors.error}"
+                  required
+              >
+              <div 
+                  class="invalid-text"
+                  *ngIf="errors.error">
+                  {{errors.error.title}}
+              </div>
+          </div>
+      </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary close-btn" id="close-btn" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" (click)="updateList()" *ngIf="this.showHideBtn">Save changes</button>
+        <button type="button" class="btn btn-primary" (click)="createList()" *ngIf="!this.showHideBtn">Save</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- card modal -->
+<!-- Modal -->
+<div class="modal fade" id="cardModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel" *ngIf="this.showHideBtn">Update Card</h5>
+        <h5 class="modal-title" id="exampleModalLabel" *ngIf="!this.showHideBtn">Add Card</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form (ngSubmit)="createList()" #f="ngForm">
+          <div class="form-group">
+              <input 
+                  [(ngModel)]="selectCard.title" 
+                  placeholder="Title" 
+                  class="signup-field"
+                  #title="ngModel"
+                  name="title"
+                  [ngClass]="{'alert alert-danger': errors.error}"
+                  required
+              >
+              <div 
+                  class="invalid-text"
+                  *ngIf="errors.error">
+                  {{errors.error.title}}
+              </div>
+          </div>
+      </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary close-btn" id="close-card-btn" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" (click)="updateCard()" *ngIf="this.showHideBtn">Save changes</button>
+        <button type="button" class="btn btn-primary" (click)="createCard()" *ngIf="!this.showHideBtn">Save</button>
+      </div>
+    </div>
+  </div>
+</div>
+</section>

@@ -1,0 +1,80 @@
+<section>
+    <div class="container">
+        <div class="row mt-5">
+            <div class="col-md-4 offset-md-3 login-box">
+                    <h2 class="text-center">Login User</h2>
+                <form (ngSubmit)="onSubmit()" #f="ngForm">
+                    <div class="form-group">
+                        <input 
+                            [(ngModel)]="signup.username" 
+                            placeholder="Username" 
+                            class="signup-field"
+                            #username="ngModel"
+                            name="username"
+                            [ngClass]="{'alert alert-danger': errors.username}"
+                        >
+                        <div 
+                            class="invalid-text"
+                            *ngIf="errors.username">
+                           {{errors.username}}
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <input 
+                            [(ngModel)]="signup.password" 
+                            type="password" 
+                            placeholder="Password" 
+                            class="signup-field"
+                            #password="ngModel"
+                            name="password"
+                            [ngClass]="{'alert alert-danger': errors.password}"
+                        >
+                        <div 
+                            class="invalid-text"
+                            *ngIf="errors.password">
+                            {{errors.password}}
+                         </div>
+                    </div>
+                    <div class="form-group">
+                        <input 
+                            [(ngModel)]="signup.confirm_password" 
+                            type="password" 
+                            placeholder="Confirm Password" 
+                            class="signup-field"
+                            #confirm_password="ngModel"
+                            name="confirm_password"
+                            [ngClass]="{'alert alert-danger': errors.confirm_password}"
+                        >
+                        <div 
+                            class="invalid-text"
+                            *ngIf="errors.non_field_errors || errors.confirm_password">
+                            {{errors.non_field_errors}}
+                            {{errors.confirm_password}}
+                         </div>
+                    </div>
+
+                    <div class="form-group">
+                        <input 
+                            [(ngModel)]="signup.email" 
+                            placeholder="Email" 
+                            class="signup-field"
+                            #email="ngModel"
+                            name="email"
+                            [ngClass]="{'alert alert-danger': errors.email}"
+                        >
+                        <div 
+                            class="invalid-text"
+                            *ngIf="errors.email">
+                            {{errors.email}}
+                         </div>
+                    </div>
+                    <div class="mb-2">
+                        <a href="#">Login</a>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,52 @@
+<section>
+    <div class="container">
+        <div class="row mt-5">
+            <div class="col-md-4 offset-md-3 login-box">
+                    <h2 class="text-center">Login User</h2>
+                  <form (ngSubmit)="onSubmit()" #f="ngForm">
+                    <div class="form-group">
+                        <input 
+                            [(ngModel)]="user.username" 
+                            placeholder="Username" 
+                            class="login-field"
+                            #username="ngModel"
+                            name="username"
+                            [ngClass]="{'alert alert-danger': _userService.errors.username}"
+                        >
+                        <div 
+                            class="invalid-text"
+                            *ngFor="let error of _userService.errors.username">
+                           {{error}}
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <input 
+                            [(ngModel)]="user.password" 
+                            type="password" 
+                            placeholder="Password" 
+                            class="login-field"
+                            #password="ngModel"
+                            name="password"
+                            [ngClass]="{'alert alert-danger': _userService.errors.password}"
+                        >
+                        <div 
+                            class="invalid-text"
+                            *ngFor="let error of _userService.errors.password">
+                            {{error}}
+                         </div>
+                    </div>
+                    <div class="mb-2">
+                        <a href="#">Signup</a>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <div 
+                        class="invalid-text"
+                        *ngFor="let error of _userService.errors.non_field_errors">
+                        {{error}}
+                    </div>
+                  </form>
+            </div>
+        </div>
+    </div>
+  </section>

@@ -1,0 +1,14 @@
+<div class="form-group">
+  <input 
+      [(ngModel)]="new_board.title" 
+      placeholder="Username" 
+      class="signup-field"
+      [ngClass]="{'alert alert-danger': error.title}"
+  >
+  <div 
+      class="invalid-text"
+      *ngIf="error.title">
+     {{error.title}}
+  </div>
+</div>
+<button type="submit" class="btn btn-primary" (click)="createBoard()">Submit</button>
