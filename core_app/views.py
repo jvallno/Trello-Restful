@@ -229,6 +229,7 @@ class BoardInviteViewSet(viewsets.ViewSet):
     Enable the owner to invite member to existing board
     """
 
+    authentication_classes = (CsrfExemptSessionAuthentication, BasicAuthentication)
     permission_classes = [permissions.IsAuthenticated]
     subject = 'Trello Confirmation'
 

@@ -82,7 +82,7 @@ class BoardInvite(models.Model):
     """
 
     board = models.ForeignKey(Board, on_delete=models.CASCADE)
-    member_email = models.EmailField(max_length=50)
+    member_email = models.EmailField(max_length=50, blank=True)
     archive = models.BooleanField(default=False)
     token = models.UUIDField(default=uuid.uuid4)
 
