@@ -1,0 +1,25 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Trello App</title>
+  <base href="/">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="stylesheet" type="text/css" href="{% static 'static-files/font-awesome.min.css' %}">
+</head>
+<body>
+  <app-root></app-root>
+
+<script type="text/javascript" src="{% static 'static-files/jquery-3.4.1.js' %}"></script>
+<script type="text/javascript" src="{% static 'static-files/popper.js' %}"></script>
+<script type="text/javascript" src="{% static 'static-files/bootstrap.js' %}"></script>
+<script type="text/javascript" src="{% static 'frontend/angular-app/dist/angular-app/runtime.js' %}"></script>
+<script type="text/javascript" src="{% static 'frontend/angular-app/dist/angular-app/es2015-polyfills.js' %}" nomodule></script>
+<script type="text/javascript" src="{% static 'frontend/angular-app/dist/angular-app/polyfills.js' %}"></script>
+<script type="text/javascript" src="{% static 'frontend/angular-app/dist/angular-app/styles.js' %}"></script>
+<script type="text/javascript" src="{% static 'frontend/angular-app/dist/angular-app/vendor.js' %}"></script>
+<script type="text/javascript" src="{% static 'frontend/angular-app/dist/angular-app/main.js' %}"></script></body>
+</html>
