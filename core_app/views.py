@@ -191,7 +191,7 @@ class SignUpView(viewsets.ViewSet):
     """
     Allow the user to login
     """
-
+    authentication_classes = (CsrfExemptSessionAuthentication, BasicAuthentication)
     permission_classes = [AllowAny]
     serializer_class = SignUpSerializer
     
@@ -209,6 +209,7 @@ class LoginViewSet(viewsets.ViewSet):
     Login with token
     """
     
+    authentication_classes = (CsrfExemptSessionAuthentication, BasicAuthentication)
     content_error = 'Your username or password is incorrect!'
     serializer_class = UserSerializer
     
@@ -256,6 +257,7 @@ class ConfirmInvitation(viewsets.ViewSet):
     Let the user confirm the invitation
     """
 
+    authentication_classes = (CsrfExemptSessionAuthentication, BasicAuthentication)
     success = 'You have confirmed the invitation!'
     template_name = 'board_single_view'
     invited_template_name = 'invited_signup'

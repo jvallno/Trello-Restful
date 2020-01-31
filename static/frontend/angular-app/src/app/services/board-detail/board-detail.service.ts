@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
 export class BoardDetailService {
 
   baseurl = 'http://127.0.0.1:8000/api/board/';
-  emailUrl = 'http://127.0.0.1:8000/api/invite/';
+  emailUrl = 'http://127.0.0.1:8000/api/invite';
   windowUrl = window.location.href;
   httpHeaders = new HttpHeaders({'Content-Type': 'application/json'})
   csrfheaders = new HttpHeaders({'X-CSRFToken': this.cookieService.get('csrftoken')});

@@ -114,7 +114,6 @@ local_settings.py
 *.bak
 node_modules/
 media/users
-static/
 assets/fonts
 assets/images
 .sass-cache/
