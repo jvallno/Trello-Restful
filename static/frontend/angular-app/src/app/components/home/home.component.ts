@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HomeService } from '../../services/home/home.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -17,7 +18,7 @@ export class HomeComponent implements OnInit {
 
   htmlVariable: string = "<b>Some html.</b>";
 
-  constructor(private api : HomeService){
+  constructor(private api : HomeService, private router: Router){
     this.getBoards();
   }
   
@@ -28,6 +29,7 @@ export class HomeComponent implements OnInit {
       },
       error => {
         this.errors = error
+        this.router.navigate(['login']);
         console.log(error);
       })
   }
@@ -93,6 +95,11 @@ export class HomeComponent implements OnInit {
         console.log(error);
       }
     )
+  }
+
+  onLogout() {
+    localStorage.clear();
+    this.router.navigate(['login']);
   }
 
   ngOnInit() {

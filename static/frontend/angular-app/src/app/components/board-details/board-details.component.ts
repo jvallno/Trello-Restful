@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { BoardDetailService } from 'src/app/services/board-detail/board-detail.service';
 
@@ -22,7 +22,8 @@ export class BoardDetailsComponent implements OnInit {
   
   constructor(
     private route: ActivatedRoute,
-    private api: BoardDetailService
+    private api: BoardDetailService,
+    private router: Router
   ) {
 
     this.ngOnInit();
@@ -46,6 +47,7 @@ export class BoardDetailsComponent implements OnInit {
         this.lists = data.map(list => ({...list, boardId}));
       },
       error => {
+        this.router.navigate(['login']);
         this.errors = error
         console.log(error);
       })
